@@ -2,4 +2,31 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.magic.system.mapper.GradeMapper">
 
+    <select id="selectListByCondition" resultType="com.magic.system.entity.vo.GradeVO">
+        select A.id,
+               B.name studentName,
+               C.name courseName,
+               A.type,
+               A.time,
+               A.score
+        from t_grade A left join t_student B on A.student_id = B.id
+        left join t_course C on A.course_id = C.id
+        <where>
+            <if test="condition.studentName != null and condition.studentName != ''">
+                B.name like concat('%',#{condition.studentName},'%')
+            </if>
+            <if test="condition.course != null and condition.course != ''">
+                C.name like concat('%',#{condition.course},'%')
+            </if>
+            <if test="condition.type != null">
+                A.type = #{condition.type}
+            </if>
+            <if test="condition.startDate != null and condition.startDate != ''">
+                A.time &gt;= #{condition.startDate}
+            </if>
+            <if test="condition.endDate != null and condition.endDate != ''">
+                A.time &lt; #{condition.endDate}
+            </if>
+        </where>
+    </select>
 </mapper>
