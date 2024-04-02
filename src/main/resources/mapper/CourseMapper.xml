@@ -2,4 +2,34 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.magic.system.mapper.CourseMapper">
 
+    <select id="selectListByCondition" resultType="com.magic.system.entity.Course">
+        select id,
+               name,
+               type,
+               code,
+               instructor,
+               location,
+               status,
+               teacher_id,
+               create_time,
+               update_time
+        from t_course
+        <where>
+            <if test="condition.courseName != null and condition.courseName != ''">
+                and name like concat('%',#{condition.courseName},'%')
+            </if>
+            <if test="condition.courseCode != null and condition.courseCode != ''">
+                and code = #{condition.courseCode}
+            </if>
+            <if test="condition.courseType != null">
+                and type = #{condition.courseType}
+            </if>
+            <if test="condition.courseInstructor != null and condition.courseInstructor != ''">
+                and instructor like concat('%',#{condition.courseInstructor},'%')
+            </if>
+            <if test="condition.courseLocation != null and condition.courseLocation != ''">
+                and location like concat('%',#{condition.courseLocation},'%')
+            </if>
+        </where>
+    </select>
 </mapper>

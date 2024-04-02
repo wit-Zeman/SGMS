@@ -2,6 +2,10 @@ package com.magic.system.service;
 
 import com.magic.system.entity.Course;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.magic.system.entity.dto.CoursePageDTO;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +17,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface ICourseService extends IService<Course> {
 
+    List<Course> getCourseListByCondition(CoursePageDTO coursePageDTO);
 }
