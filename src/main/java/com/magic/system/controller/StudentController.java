@@ -1,8 +1,7 @@
 package com.magic.system.controller;
 
-import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>
@@ -12,8 +11,7 @@ import org.springframework.stereotype.Controller;
  * @author magic
  * @since 2024-04-02
  */
-@Tag(name = "StudentController", description = "学生管理")
-@Controller
+@RestController
 @RequestMapping("/system/student")
 public class StudentController {
 
