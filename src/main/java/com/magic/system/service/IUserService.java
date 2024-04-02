@@ -1,7 +1,9 @@
 package com.magic.system.service;
 
+import com.magic.system.common.Result;
 import com.magic.system.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.magic.system.entity.dto.UserDTO;
 
 /**
  * <p>
@@ -13,4 +15,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IUserService extends IService<User> {
 
+    Result login(UserDTO userDTO);
+
+    void logout();
+
+    void register(UserDTO userDTO);
+
+    void updateById(Long id, UserDTO userDTO);
 }
