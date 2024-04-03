@@ -1,7 +1,11 @@
 package com.magic.system.mapper;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.magic.system.entity.Class;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.magic.system.entity.dto.PageDTO;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +17,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface ClassMapper extends BaseMapper<Class> {
 
+    List<Class> getClassList(PageDTO pageDTO, Page<PageDTO> page);
 }

@@ -2,6 +2,9 @@ package com.magic.system.service;
 
 import com.magic.system.entity.Class;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.magic.system.entity.dto.PageDTO;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IClassService extends IService<Class> {
 
+    List<Class> getClassListByCondition(PageDTO pageDTO);
 }
