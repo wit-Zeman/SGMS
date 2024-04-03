@@ -63,9 +63,6 @@ public class Teacher implements Serializable {
     @Schema(description = "所属学院")
     private String department;
 
-    @Schema(description = "管理班级id")
-    private Long classId;
-
     private LocalDateTime createTime;
 
     private LocalDateTime updateTime;

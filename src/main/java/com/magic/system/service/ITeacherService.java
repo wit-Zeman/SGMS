@@ -2,6 +2,9 @@ package com.magic.system.service;
 
 import com.magic.system.entity.Teacher;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.magic.system.entity.dto.TeacherDTO;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface ITeacherService extends IService<Teacher> {
 
+    List<Teacher> getTeacherListByCondition(TeacherDTO teacherDTO);
 }

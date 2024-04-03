@@ -2,4 +2,33 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.magic.system.mapper.TeacherMapper">
 
+    <select id="getTeacherListByCondition" resultType="com.magic.system.entity.Teacher">
+        select id,
+               name,
+               gender,
+               age,
+               birth,
+               contact,
+               address,
+               education,
+               major,
+               entry_date,
+               dimission_date,
+               department,
+               class_id,
+               create_time,
+               update_time
+        from t_teacher
+        <where>
+            <if test="condition.teacherName != null and condition.teacherName != ''">
+               AND name like concat('%', #{condition.teacherName}, '%')
+            </if>
+            <if test="condition.education != null and condition.education != ''">
+                AND education like concat('%', #{condition.education}, '%')
+            </if>
+            <if test="condition.gender != null">
+                AND gender = #{condition.gender}
+            </if>
+        </where>
+    </select>
 </mapper>
