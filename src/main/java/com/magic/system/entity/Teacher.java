@@ -34,7 +34,7 @@ public class Teacher implements Serializable {
     private String name;
 
     @Schema(description = "性别：1-男，2-女，3-未知")
-    private Byte gender;
+    private Integer gender;
 
     @Schema(description = "年龄")
     private Integer age;

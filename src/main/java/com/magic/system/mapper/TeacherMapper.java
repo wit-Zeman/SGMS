@@ -3,7 +3,7 @@ package com.magic.system.mapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.magic.system.entity.Teacher;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.magic.system.entity.dto.TeacherDTO;
+import com.magic.system.entity.dto.TeacherPageDTO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -18,5 +18,5 @@ import java.util.List;
  */
 public interface TeacherMapper extends BaseMapper<Teacher> {
 
-    List<Teacher> getTeacherListByCondition(@Param("condition")TeacherDTO teacherDTO, Page<TeacherDTO> page);
+    List<Teacher> getTeacherListByCondition(@Param("condition")TeacherPageDTO TeacherPageDTO, Page<TeacherPageDTO> page);
 }

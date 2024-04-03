@@ -1,6 +1,7 @@
 package com.magic.system.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
@@ -34,13 +35,16 @@ public class Student implements Serializable {
     private String name;
 
     @Schema(description = "学生性别：0-男，1-女,2-未知")
-    private Byte gender;
+    private Integer gender;
 
     @Schema(description = "学生年龄")
     private Integer age;
 
     @Schema(description = "班级id")
     private Long classId;
+
+    @TableField(exist = false)
+    private String className;
 
     @Schema(description = "入学日期")
     private LocalDate entryDate;

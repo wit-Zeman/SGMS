@@ -2,4 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.magic.system.mapper.StudentMapper">
 
+    <select id="getStudentListByCondition" resultType="com.magic.system.entity.Student">
+        select A.id,
+               A.name,
+               A.gender,
+               A.age,
+               A.class_id,
+               B.class_name className,
+               A.entry_date,
+               A.contact,
+               A.address,
+               A.birth,
+               A.native_place,
+               A.create_time,
+               A.update_time
+        from t_student A left join t_class B on A.class_id = B.id
+        <where>
+            <if test="condition.studentName != null and condition.studentName != ''">
+                AND A.name like concat('%', #{condition.studentName}, '%')
+            </if>
+            <if test="condition.className != null and condition.className != ''">
+                AND B.class_name like concat('%', #{condition.className}, '%')
+            </if>
+        </where>
+    </select>
 </mapper>

@@ -2,11 +2,13 @@ package com.magic.system.controller;
 
 import com.magic.system.common.Result;
 import com.magic.system.entity.Teacher;
-import com.magic.system.entity.dto.TeacherDTO;
+
+import com.magic.system.entity.dto.TeacherPageDTO;
 import com.magic.system.entity.vo.TeacherVO;
 import com.magic.system.service.ITeacherService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.annotation.Resource;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -29,8 +31,8 @@ public class TeacherController {
 
     @Operation(summary = "根据条件获取教师信息列表")
     @PostMapping("/list")
-    public Result getTeacherList(TeacherDTO teacherDTO) {
-        List<Teacher> teachers = teacherService.getTeacherListByCondition(teacherDTO);
+    public Result getTeacherList(@Valid @RequestBody TeacherPageDTO TeacherPageDTO) {
+        List<Teacher> teachers = teacherService.getTeacherListByCondition(TeacherPageDTO);
         List<TeacherVO> teacherVOS = new ArrayList<>();
         for (Teacher teacher : teachers) {
             TeacherVO teacherVO = new TeacherVO();

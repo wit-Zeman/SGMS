@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
-public class TeacherDTO {
+public class TeacherPageDTO {
 
     private String teacherName;
 

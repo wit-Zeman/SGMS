@@ -1,7 +1,13 @@
 package com.magic.system.mapper;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.magic.system.entity.Student;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.magic.system.entity.dto.StudentPageDTO;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +19,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface StudentMapper extends BaseMapper<Student> {
 
+    List<Student> getStudentListByCondition(@Param("condition") StudentPageDTO studentPageDTO, Page<StudentPageDTO> page);
 }
