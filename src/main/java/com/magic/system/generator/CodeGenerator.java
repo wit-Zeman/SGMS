@@ -1,4 +1,4 @@
-package com.magic.generator;
+package com.magic.system.generator;
 
 import com.baomidou.mybatisplus.generator.FastAutoGenerator;
 import com.baomidou.mybatisplus.generator.config.OutputFile;
