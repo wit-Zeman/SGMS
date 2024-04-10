@@ -30,7 +30,9 @@ public class UserController {
     @Operation(summary = "用户注册")
     @PostMapping("/register")
     public Result register(@Valid @RequestBody UserDTO userDTO) {
-        userService.register(userDTO);
+        if (userDTO.getPassword().equals(userDTO.getConfirmPassword())){
+            userService.register(userDTO);
+        }
         return Result.success();
     }
 
