@@ -4,28 +4,28 @@
 
     <select id="selectListByCondition" resultType="com.magic.system.entity.vo.GradeVO">
         select A.id,
-               B.name studentName,
-               C.name courseName,
-               A.type,
-               A.time,
-               A.score
+        B.name studentName,
+        C.name courseName,
+        A.type,
+        A.time,
+        A.score
         from t_grade A left join t_student B on A.student_id = B.id
         left join t_course C on A.course_id = C.id
         <where>
             <if test="condition.studentName != null and condition.studentName != ''">
-                B.name like concat('%',#{condition.studentName},'%')
+                AND B.name like concat('%',#{condition.studentName},'%')
             </if>
             <if test="condition.course != null and condition.course != ''">
-                C.name like concat('%',#{condition.course},'%')
+                AND C.name like concat('%',#{condition.course},'%')
             </if>
             <if test="condition.type != null">
-                A.type = #{condition.type}
+                AND A.type = #{condition.type}
             </if>
             <if test="condition.startDate != null and condition.startDate != ''">
-                A.time &gt;= #{condition.startDate}
+                AND A.time &gt;= #{condition.startDate}
             </if>
             <if test="condition.endDate != null and condition.endDate != ''">
-                A.time &lt; #{condition.endDate}
+                AND A.time &lt; #{condition.endDate}
             </if>
         </where>
     </select>
