@@ -42,7 +42,7 @@ public class TeacherController {
             teacherVO.setContact(teacher.getContact());
             teacherVO.setEducation(teacher.getEducation());
             teacherVO.setMajor(teacher.getMajor());
-            teacherVO.setGender(teacher.getAge());
+            teacherVO.setGender(teacher.getGender());
             teacherVO.setEntryDate(teacher.getEntryDate());
             teacherVO.setDimissionDate(teacher.getDimissionDate());
             teacherVO.setDepartment(teacher.getDepartment());

@@ -37,9 +37,14 @@ public class MsgBoardController {
 
     @Operation(summary = "获取留言列表")
     @PostMapping("/list")
-    public Result getMsgBoardList(@Valid @RequestBody PageDTO pageDTO) {
-        Page<MsgBoard> page = new Page<>(pageDTO.getPage(),pageDTO.getPageSize());
-        return Result.success(msgBoardService.list(page));
+    public Result getMsgBoardList() {
+        return Result.success(msgBoardService.list());
+    }
+
+    @Operation(summary = "根据ID删除留言")
+    @DeleteMapping("/{id}")
+    public Result deleteMsgBoard(@PathVariable("id") Long id) {
+        return Result.success(msgBoardService.removeById(id));
     }
 
 }
