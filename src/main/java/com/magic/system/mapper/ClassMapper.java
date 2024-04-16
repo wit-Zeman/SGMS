@@ -18,4 +18,6 @@ import java.util.List;
 public interface ClassMapper extends BaseMapper<Class> {
 
     List<Class> getClassList(PageDTO pageDTO, Page<PageDTO> page);
+
+    Long selectIdByName(String className);
 }

@@ -6,4 +6,7 @@
         select id, class_name, class_teacher, introduction, create_time, update_time
         from t_class
     </select>
+    <select id="selectIdByName" resultType="long">
+        select id from t_class where class_name = #{className}
+    </select>
 </mapper>

@@ -17,4 +17,6 @@ import java.util.List;
 public interface IStudentService extends IService<Student> {
 
     List<Student> getStudentListByCondition(StudentPageDTO studentPageDTO);
+
+    boolean saveStudent(Student student);
 }

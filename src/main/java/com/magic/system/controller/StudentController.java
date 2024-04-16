@@ -3,6 +3,7 @@ package com.magic.system.controller;
 import com.magic.system.common.Result;
 import com.magic.system.entity.Student;
 import com.magic.system.entity.dto.StudentPageDTO;
+import com.magic.system.mapper.ClassMapper;
 import com.magic.system.service.IStudentService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.annotation.Resource;
@@ -24,6 +25,9 @@ public class StudentController {
     @Resource
     private IStudentService studentService;
 
+    @Resource
+    private ClassMapper classMapper;
+
     @Operation(summary = "根据id获取学生信息")
     @GetMapping("/{id}")
     public Result getStudentById(@PathVariable("id") Long id) {
@@ -39,12 +43,20 @@ public class StudentController {
     @Operation(summary = "添加学生信息")
     @PostMapping("/save")
     public Result addStudent(@RequestBody Student student) {
-        return studentService.save(student) ? Result.success() : Result.fail();
+        return studentService.saveStudent(student) ? Result.success() : Result.fail();
     }
 
     @Operation(summary = "修改学生信息")
     @PutMapping("/update")
     public Result updateStudent(@RequestBody Student student) {
+        Long classId = 0L;
+        student.setClassId(classId);
+        if (student.getClassName() != null){
+            classId = classMapper.selectIdByName(student.getClassName());
+            if (classId != null){
+                student.setClassId(classId);
+            }
+        }
         return studentService.updateById(student) ? Result.success() : Result.fail();
     }
 
