@@ -9,7 +9,10 @@ import com.magic.system.service.IUserService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
 
 
 /**
@@ -76,5 +79,19 @@ public class UserController {
         Page<User> page = new Page<>(pageDTO.getPage(), pageDTO.getPageSize());
         return Result.success(userService.list(page));
     }
+
+
+    /**
+     * 用户头像上传
+     * @param file
+     * @return
+     */
+    @Operation(summary = "文件上传")
+    @PostMapping(value = "/upload",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public Result fileUpload(@PathVariable("file") MultipartFile file, @RequestParam("id") Long id) throws Exception {
+        userService.upload(file,id);
+        return Result.success();
+    }
+
 
 }

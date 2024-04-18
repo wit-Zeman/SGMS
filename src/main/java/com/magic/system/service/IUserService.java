@@ -4,6 +4,7 @@ import com.magic.system.common.Result;
 import com.magic.system.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.magic.system.entity.dto.UserDTO;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * <p>
@@ -22,4 +23,6 @@ public interface IUserService extends IService<User> {
     void register(UserDTO userDTO);
 
     void updateById(Long id, UserDTO userDTO);
+
+    void upload(MultipartFile file,Long id) throws Exception;
 }

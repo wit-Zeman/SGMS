@@ -38,6 +38,15 @@ public class User implements Serializable {
     @Schema(description = "用户权限：0-管理员，1-学生，2-教师")
     private Integer role;
 
+    @Schema(description = "邮箱")
+    private String email;
+
+    @Schema(description = "简介")
+    private String intro;
+
+    @Schema(description = "头像")
+    private String avatar;
+
     private LocalDateTime createTime;
 
     private LocalDateTime updateTime;

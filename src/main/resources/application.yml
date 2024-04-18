@@ -8,6 +8,19 @@ spring:
     username: root
     password: mysql123...
     driver-class-name: com.mysql.cj.jdbc.Driver
+ #配置单个文件上传大小限制
+#配置单个请求最大大小的限制（一次请求中可以把上传多个文件）
+  servlet:
+    multipart:
+      max-file-size: 2MB
+      max-request-size: 2MB
+#开启热部署、加载静态资源
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: true
+
 #mybatis-plus配置
 mybatis-plus:
   mapper-locations: classpath*:mapper/*.xml
@@ -15,3 +28,5 @@ mybatis-plus:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     map-underscore-to-camel-case: true
 
+file:
+  location: D:\WorkSpace\student_grade_management_backend\src\main\resources\static\file\

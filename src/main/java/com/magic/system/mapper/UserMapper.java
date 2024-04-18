@@ -2,6 +2,7 @@ package com.magic.system.mapper;
 
 import com.magic.system.entity.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * <p>
@@ -13,4 +14,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface UserMapper extends BaseMapper<User> {
 
+     void updateFileById(@Param("id") Long id, @Param("filePath")String filePath);
 }

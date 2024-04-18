@@ -1,7 +1,5 @@
 package com.magic.system.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.AbstractLambdaWrapper;
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.magic.system.common.Result;
 import com.magic.system.entity.User;
@@ -10,7 +8,11 @@ import com.magic.system.mapper.UserMapper;
 import com.magic.system.service.IUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
 
 /**
  * <p>
@@ -22,6 +24,9 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
+
+    @Value("${file.location}")
+    private String fileUrl;
 
     @Override
     public Result login(UserDTO userDTO) {
@@ -54,5 +59,26 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         BeanUtils.copyProperties(userDTO, user);
         user.setId(id);
         this.baseMapper.updateById(user);
+    }
+
+    @Override
+    public void upload(MultipartFile file, Long id) throws Exception {
+        if (file.isEmpty()) {
+            throw new Exception("上传的文件不能为空");
+        }
+        // 获取原始文件名
+        String originalFilename = file.getOriginalFilename();
+
+//        TODO 文件重命名以防止重复
+
+        // 获取后缀.的索引位置
+        int index = originalFilename.lastIndexOf(".");
+        String afterPointName = originalFilename.substring(index);
+        String newFilename = System.currentTimeMillis() + afterPointName;
+        // 将文件输出到指定的目录
+        file.transferTo(new File(fileUrl + newFilename));
+        String filePath = "http://localhost:8080/file/" + newFilename;
+        // 更新文件url
+        this.baseMapper.updateFileById(id, filePath);
     }
 }
