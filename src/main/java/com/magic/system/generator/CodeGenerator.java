@@ -10,7 +10,7 @@ import java.util.Collections;
 
 public class CodeGenerator {
     public static void main(String[] args) {
-        FastAutoGenerator.create("jdbc:mysql://47.103.83.64:3306/student_grade_management", "root", "123456")
+        FastAutoGenerator.create("jdbc:mysql://xxxx:3306/student_grade_management", "root", "123456")
                 .globalConfig(builder -> {
                     builder.author("magic") // 设置作者
                             .enableSpringdoc() // 开启 springDoc 模式
